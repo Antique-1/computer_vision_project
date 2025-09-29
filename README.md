@@ -12,7 +12,7 @@
 
 ## :notebook_with_decorative_cover: 참고 프로젝트 및 문서
 * [경진용 데이터셋을 사용해서 YOLOv5로 커스텀 객체 탐지 모델을 만드는 튜토리얼](https://readmedium.com/yolov5-tutorial-on-custom-object-detection-using-kaggle-competition-dataset-1ff76219d82a?utm_source=chatgpt.com)
-  + 해당 튜토리얼은 데이터 전처리 → 모델 학습 → 추론 → 결과 시각화까지, 객체 탐지 프로젝트 전 과정을 단계별로 설명하고 있어 초보자도 따라하기 쉬워서 참고 문서로 선택하였음
+  + 해당 튜토리얼은 데이터 전처리 → 모델 학습 → 추론 → 결과 시각화까지, 객체 탐지 프로젝트 전 과정을 단계별로 설명하고 있어 초보자도 따라하기 쉬워서 참고 문서로 선택하였음.
 ## :high_brightness: 컴퓨터 비전 활용 요소 분석
 
 ### 📌 1. 객체 탐지 (Object Detection)
