@@ -1,1 +1,16 @@
-# computer_vision_project
+# 컴퓨터 비전 프로젝트
+
+## :pencil: 팀원 구성
+
+* 20181510 윤지환 - ...
+* 20201710 박광우 - ...
+* 20211701 김도현 - ...
+
+## :mag_right: 프로젝트 주제 
+* 손 포즈 탐지
+* 사람 혹은 객체의 수 탐지
+## :notebook_with_decorative_cover: 참고 프로젝트의 목적 및 개선 방향성
+
+## :high_brightness: 컴퓨터 비전 활용 요소 분석
+
+## :bulb: 참고하는 이유
