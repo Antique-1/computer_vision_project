@@ -62,7 +62,7 @@
 * 모델 선택
   - YOLOv8, EfficientDet, MobileNet 기반 분류 모델 중 비교 후 채택  
 * 학습 전략
-  - GPU 환경에서 전이학습(Transfer Learning) 수행  
+  - GPU 환경에서 전이학습 수행  
   - 성능 평가 지표: mAP, Precision, Recall, F1-Score  
   - 불균형 클래스 해결을 위한 Oversampling 및 Weighted Loss 적용
 
