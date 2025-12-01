@@ -3,7 +3,7 @@ from typing import List, Dict, Any
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import json
-
+import os
 from ultralytics import YOLO  
 
 # -----------------------------
@@ -21,7 +21,7 @@ DEFAULT_GUIDE = {
 # -----------------------------
 # 내가 학습한 모델 로드
 # -----------------------------
-MODEL_PATH = "models/best.pt"     # ← 사용자가 학습한 모델 파일
+MODEL_PATH = os.path.abspath("runs/train_auto/exp/weights/best.pt")     # ← 사용자가 학습한 모델 파일
 MODEL = YOLO(MODEL_PATH)
 
 
@@ -30,7 +30,7 @@ MODEL = YOLO(MODEL_PATH)
 # -----------------------------
 def predict_image(img: Image.Image, device: str = "cpu", conf: float = 0.25) -> List[Dict[str, Any]]:
     arr = np.array(img.convert("RGB"))
-    results = MODEL.predict(source=arr, conf=conf, device=device)
+    results = MODEL(arr, conf=conf, device=device)
 
     out = []
     r = results[0]
