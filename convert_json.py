@@ -6,12 +6,13 @@ import glob
 # 1. 클래스 이름 → class_id 매핑
 # ---------------------------------
 CLASS_MAP = {
-    "플라스틱": 0,
+    "금속캔": 0,
     "종이": 1,
-    "유리병": 2,
-    "캔": 3,
-    "비닐": 4
-    # 필요하면 추가
+    "페트병": 2,
+    "플라스틱": 3,
+    "스티로품": 4,
+    "비닐": 5,
+    "유리병": 6
 }
 
 # ---------------------------------
@@ -66,13 +67,12 @@ def convert_json_to_yolo(json_path, images_root, labels_root):
 
         class_id = CLASS_MAP[class_name]
 
-        x1, y1, x2, y2 = anno["POINTS"]
+        points = anno["POINTS"][0]
 
-        # YOLO format 변환
-        xc = ((x1 + x2) / 2) / img_width
-        yc = ((y1 + y2) / 2) / img_height
-        w = abs(x2 - x1) / img_width
-        h = abs(y2 - y1) / img_height
+        xc = points[0] / img_width
+        yc = points[1] / img_height
+        w = points[2] / img_width
+        h = points[3] / img_height
 
         lines.append(f"{class_id} {xc:.6f} {yc:.6f} {w:.6f} {h:.6f}")
 
@@ -87,12 +87,21 @@ def convert_json_to_yolo(json_path, images_root, labels_root):
 # 4. json 폴더 전체 변환 실행
 # ---------------------------------
 def convert_all_json(json_folder, images_root="images", labels_root="labels"):
-    json_files = [f for f in os.listdir(json_folder) if f.endswith(".json")]
+    # 하위 폴더 포함 모든 JSON 파일 탐색
+    json_files = glob.glob(os.path.join(json_folder, "**", "*.json"), recursive=True)
 
-    for file in json_files:
-        json_path = os.path.join(json_folder, file)
+    if not json_files:
+        print("❌ JSON 파일이 없습니다. 경로 확인하세요:", json_folder)
+        return
+
+    print(f"🔎 총 {len(json_files)}개의 JSON 라벨 발견")
+
+    for json_path in json_files:
         convert_json_to_yolo(json_path, images_root, labels_root)
 
-
 # 실행 예시
-convert_all_json("json")
+convert_all_json(
+    r"C:\project\vision\datasets\recycle\data\Training\labels",
+    images_root=r"C:\project\vision\datasets\recycle\data\Training\images",
+    labels_root=r"C:\project\vision\datasets\recycle\data\Training\labels_yolo"
+)
