@@ -18,8 +18,8 @@ def main():
     # 3) 검증(optional)
     model.val()
 
-    print("🎉 학습이 완료되었습니다!")
-    print("📁 best.pt 위치:")
+    print("학습이 완료되었습니다!")
+    print("best.pt 위치:")
     print("   → runs/detect/recycle_train/weights/best.pt")
 
 if __name__ == "__main__":
