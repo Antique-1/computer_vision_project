@@ -69,10 +69,35 @@
 * 실험한 모델들  
   * YOLOv8 
   * EfficientDet  
-  * MobileNetV3 Detector  
+  * MobileNetV3 Detector
+    
 * 최종 선택: YOLOv8  
   * 빠른 속도  
   * 다양한 환경에서도 높은 정확도 확보
+    
+#### 모델 학습 파이프라인
+* JSON → YOLO TXT 자동 변환  
+* YOLO 포맷에 맞게 데이터셋 split
+* `data.yaml` 자동 생성  
+* YOLOv8n 모델 불러오기 
+* 다음 설정으로 학습 실행:
+  * epochs = 50  
+  * imgsz = 640  
+  * batch = 16  
+  * optimizer = SGD 
+  * pretrained weights = yolov8n.pt  
+
+#### 학습 결과물
+* `runs/train_auto/exp/weights/best.pt`  
+  → 실제 추론에 사용하는 최종 모델 파일
+  
+####학습 결과 적용
+
+학습된 YOLO 모델은 Streamlit 기반 서비스에서 사용
+* 이미지 업로드  
+* 객체 검출  
+* 검출된 클래스에 대한 분리배출 가이드 자동 제공  
+
 
 ### 3. 분리수거 가이드 생성 단계
 * 인식된 쓰레기 클래스에 따라 분리수거 규칙 DB 매핑  
