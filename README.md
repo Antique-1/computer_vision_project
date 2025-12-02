@@ -62,11 +62,12 @@
 * AI-HUB 분리배출 데이터셋 활용  
   * 실생활 환경의 다양한 분리수거 이미지 포함  
   * 제공된 JSON 라벨을 자체 스크립트로 YOLO(txt)로 변환  
-
+  * 변환된 txt 파일을 이용해 모델 학습에 직접 이용
+    
 ### 2. 모델 학습 단계
 #### 모델 선택
 * 실험한 모델들  
-  * YOLOv8 (n, s, m)  
+  * YOLOv8 
   * EfficientDet  
   * MobileNetV3 Detector  
 * 최종 선택: YOLOv8  
