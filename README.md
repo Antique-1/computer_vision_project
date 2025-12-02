@@ -65,7 +65,7 @@
   * 변환된 txt 파일을 이용해 모델 학습에 직접 이용
     
 ### 2. 모델 학습 단계
-#### 모델 선택
+#### 2.1 모델 선택
 * 실험한 모델들  
   * YOLOv8 
   * EfficientDet  
@@ -75,7 +75,7 @@
   * 빠른 속도  
   * 다양한 환경에서도 높은 정확도 확보
     
-#### 모델 학습 파이프라인
+#### 2.2 모델 학습 파이프라인
 * JSON → YOLO TXT 자동 변환  
 * YOLO 포맷에 맞게 데이터셋 split
 * `data.yaml` 자동 생성  
@@ -87,11 +87,11 @@
   * optimizer = SGD 
   * pretrained weights = yolov8n.pt  
 
-#### 학습 결과물
+#### 2.3 학습 결과물
 * `runs/train_auto/exp/weights/best.pt`  
   → 실제 추론에 사용하는 최종 모델 파일
   
-####학습 결과 적용
+#### 2.4 학습 결과 적용
 
 학습된 YOLO 모델은 Streamlit 기반 서비스에서 사용
 * 이미지 업로드  
