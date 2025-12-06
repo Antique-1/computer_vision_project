@@ -35,6 +35,19 @@ def main():
 if __name__ == "__main__":
     main()
 
+"""
+모델 학습 후 성능
+train/box_loss: 0.40486
+train/cls_loss: 0.625
+train/dfl_loss: 0.91457
+val/box_loss: 0.30363
+val/cls_loss: 0.56663
+val/dfl_loss: 0.84691
+precision: 0.818
+recall: 0.804
+mAP50: 0.871
+mAP50-95: 0.812
+"""
 
 
 
