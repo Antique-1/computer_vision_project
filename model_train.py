@@ -1,23 +1,26 @@
 from ultralytics import YOLO
 
 def main():
-    MODEL_NAME = "yolov8n.pt"
+    MODEL_NAME = "yolov8m.pt"
     DATA_YAML = r"C:\project\vision\datasets\recycle\data\YoloSplit\data.yaml"
 
-    model = YOLO(MODEL_NAME)
+    model = YOLO(r"C:\Users\kbg00\runs\train_auto\exp\weights\epoch44.pt")
 
     model.train(
         data=DATA_YAML,
         epochs=50,
-        imgsz=512,          # 640보다 40% 빠름
-        batch=32,           # 4080 VRAM 16GB 기준 안정적   
-        workers=24,         # 7950X 최적값
+        imgsz=640,          
+        batch=24,           # 4080 VRAM 16GB 기준 v8m 모델 최적값
+        workers=16,         # 7950X 최적값
         device=0,
         amp=True,           # FP16 자동
         project="runs/train_auto",
         name="exp",
         exist_ok=True,
-        cache='disk'
+
+        resume=True,
+        save=True,
+        save_period=1
     )
 
     model = YOLO("runs/train_auto/exp/weights/best.pt")
