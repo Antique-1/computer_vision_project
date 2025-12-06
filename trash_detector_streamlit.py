@@ -4,18 +4,20 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import json
 import os
+
 from ultralytics import YOLO  
 
 # -----------------------------
 # 기본 분리수거 가이드 매핑
 # -----------------------------
 DEFAULT_GUIDE = {
-    "plastic": "내용물 비우기 → 라벨 제거 후 분리배출",
-    "glass": "뚜껑 분리 → 색상별 분리 배출",
-    "can": "내용물 비우기 → 압착 후 배출",
-    "paper": "이물질 제거 → 건조 후 배출",
-    "food": "음식물 쓰레기(물기 제거 후 전용 봉투에)",
-    "vinyl": "오염 여부 확인 → 일반(비닐) 분류",
+    "금속캔": "내용물 비우기 → 가능한 압착 후 배출",
+    "종이": "이물질 제거 → 코팅·테이프 제거 → 건조 후 배출",
+    "페트병": "내용물 비우기 → 라벨 제거 → 투명 페트병은 별도 분리",
+    "플라스틱": "내용물 비우기 → 라벨 제거 후 분리배출",
+    "스티로폼": "이물질 제거 → 깨끗한 포장재만 배출 (오염·음식물 묻으면 일반폐기)",
+    "비닐": "이물질·물기 제거 → 오염 심하면 일반쓰레기",
+    "유리병": "뚜껑 분리 → 색상별 분리 배출 → 깨진 유리는 일반쓰레기",
 }
 
 # -----------------------------
@@ -121,7 +123,7 @@ def main():
 
     image = Image.open(uploaded).convert("RGB")
     st.markdown("### 원본 이미지")
-    st.image(image, use_column_width=True)
+    st.image(image, use_container_width=True)
 
     with st.spinner("예측 중..."):
         detections = predict_image(image, device=device, conf=conf_thresh)
@@ -130,7 +132,7 @@ def main():
     vis_img = draw_boxes(image, mapped)
 
     st.markdown("### 검출 결과")
-    st.image(vis_img, use_column_width=True)
+    st.image(vis_img, use_container_width=True)
 
     for i, item in enumerate(mapped, 1):
         st.write(f"**{i}. 클래스:** {item['class']} | **신뢰도:** {item['score']:.2f}")
